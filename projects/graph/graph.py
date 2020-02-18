@@ -179,13 +179,15 @@ class Graph:
             path = []
 
         visited.add(starting_vertex)
-        path = path + [starting_vertex]
+        # path = path + [starting_vertex]
+        path_copy = path[:]
+        path.append(starting_vertex)
         if starting_vertex == destination_vertex:
-            return path
+            return path_copy
         for vertex in self.vertices[starting_vertex]:
             if vertex not in visited:
                 p = self.dfs_recursive(vertex, destination_vertex, visited, path)
-                if p:
+                if p is not None:
                     return p
 
 if __name__ == '__main__':
